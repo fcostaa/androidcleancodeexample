@@ -106,7 +106,7 @@ Classe de Controle:
  
         entityManager.close();
     }
-```java
+```
 
 JUnit 4:
 

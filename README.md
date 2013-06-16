@@ -26,7 +26,6 @@ Exemplo:
           this.searchManager = (SearchManager) getSystemService(Activity.SEARCH_SERVICE);
       }
   }
-
 ```
 
 
@@ -40,7 +39,7 @@ Algumas anotações padrões do Java:
 
 <ul>
 <li>@Override</li>
-<li>@Deprecated </li>
+<li>@Deprecated</li>
 <li>@SuppressWarnings</li>
 </ul>
 
@@ -111,19 +110,15 @@ Classe de Controle:
 
 JUnit 4:
 
-@Before
-@BeforeClass
-@After
-@AfterClass
-@Test
-@Ignore
-@Test(timeout=500)
-@Test(expected=IllegalArgumentException.class)
 <ul>
-<li>@Override</li>
-<li>@Deprecated</li>
-<li>@SuppressWarnings</li>
-<li>@SuppressWarnings</li>
+<li>@Before</li>
+<li>@BeforeClass</li>
+<li>@After</li>
+<li>@AfterClass</li>
+<li>@Test</li>
+<li>@Ignore</li>
+<li>@Test(timeout=500)</li>
+<li>@Test(expected=IllegalArgumentException.class)</li>
 </ul>
 
 ```java
@@ -140,7 +135,7 @@ public class JunitTest1 {
     @AfterClass
     public static void oneTimeTearDown() {
         // one-time cleanup code
-    	System.out.println("@AfterClass - oneTimeTearDown");
+      System.out.println("@AfterClass - oneTimeTearDown");
     }
  
     @Before
@@ -266,9 +261,28 @@ E no Android?
 IoC:
 
 Todo o padrão de Activites, definido no Manifest, e de Views através do setContentView e findById
+```java
+  public class MyActivity extends Activity {
+  
+      private TextView label;
+  
+      private Drawable image;
+  
+      private SearchManager searchManager;
+  
+      @Override
+      public void onCreate(Bundle savedInstanceState) {
+          super.onCreate(savedInstanceState);
+          setContentView(R.layout.myactivity);
+          this.label = (TextView) findViewById(R.id.mylabel);
+          this.image = getResources().getDrawable(R.drawable.myimage);
+          this.searchManager = (SearchManager) getSystemService(Activity.SEARCH_SERVICE);
+      }
+  }
+```
 
 DI:
-
+```java
 public class MainApplication extends Application  {
 
     private MyService service;
@@ -295,17 +309,9 @@ public class MainActivity extends Activity  {
         service = app.getMyService();
     }
 }
+```
 
-
-
-Fontes:
-http://martinfowler.com/bliki/InversionOfControl.html
-http://martinfowler.com/articles/injection.html#InversionOfControl
-http://stackoverflow.com/questions/130794/what-is-dependency-injection
-http://www.jamesshore.com/Blog/Dependency-Injection-Demystified.html
-
-
-4 - Abordar isso no Android. Apresentar o AndroidAnnotations e o RoboGuice
+<h2>Abordar isso no Android. Apresentar o AndroidAnnotations e o RoboGuice</h2>
 
 Mostrar exemplos do link, parte “The Android Way”: http://blog.springsource.org/2011/08/26/clean-code-with-android/ 
 
@@ -321,19 +327,4 @@ Ou vc acha que primeiro mostramos o código todo (seção 5) e depois mostramos 
 Boa! A gente explica o framework e mostrar exemplos do próprio site/wiki dele.
 Depois, a gente mostra o nosso projeto(arquivo Manifest, classes e interfaces) e como foi estruturado o nosso projeto para funcionar com o framework.
 
-5 - Mostrar projeto
-
-Quem começou?
-http://www.ebusinessinformation.fr/
-Pagina:
-https://github.com/excilys/androidannotations
-Wiki bem completa:
-https://github.com/excilys/androidannotations/wiki
-Cookbook (exemplos prontos):
-https://github.com/excilys/androidannotations/wiki/Cookbook
-Licença:
-Apache 2
-
-Exibir código do projeto exemplo, passando pelas classes e interfaces.
-
-6 - Fim
+<h2>Projeto Exemplo</h2>

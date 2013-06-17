@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">AnnotationsExemplo</string>
+    <string name="action_settings">Settings</string>
+    
+    <!-- <string name="clique_em_mim">Clique em mim para incrementar</string> -->
+
+    
+    
+</resources>

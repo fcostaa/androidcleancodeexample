@@ -21,6 +21,7 @@ public class CervejaActivity extends SherlockFragmentActivity {
 		setContentView(R.layout.cerveja);
 		
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setTitle("Cerveja");
 		
 		Intent intent = getIntent();
 		

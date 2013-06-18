@@ -30,8 +30,21 @@ public class CervejaFragment extends SherlockFragment {
 
 	private View preencherCerveja(View view) {
 		
+		//Nome
 		TextView nome = (TextView) view.findViewById(R.id.cerveja_nome);
 		nome.setText(cerveja.getNome());
+		
+		//Teor
+		TextView teorAlcoolico = (TextView) view.findViewById(R.id.cerveja_teor);
+		teorAlcoolico.setText("Teor: " + cerveja.getTeorAlcoolico());
+		
+		//Cervejaria fabricante
+		TextView fabricante = (TextView) view.findViewById(R.id.cerveja_cervejaria);
+		fabricante.setText(cerveja.getCervejaria());
+		
+		//Descrição
+		TextView descricao = (TextView) view.findViewById(R.id.cerveja_descricao);
+		descricao.setText(cerveja.getDescricao());
 		
 		return view;
 	}

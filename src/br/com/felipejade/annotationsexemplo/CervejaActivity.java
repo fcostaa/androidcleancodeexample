@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import br.com.felipejade.annotationsexemplo.models.Cerveja;
 
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.MenuItem;
 
 public class CervejaActivity extends SherlockFragmentActivity {
 
@@ -18,6 +19,8 @@ public class CervejaActivity extends SherlockFragmentActivity {
 		super.onCreate(arg0);
 		
 		setContentView(R.layout.cerveja);
+		
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		Intent intent = getIntent();
 		
@@ -34,5 +37,15 @@ public class CervejaActivity extends SherlockFragmentActivity {
 			transaction.add(R.id.cerveja_detalhes, frag);
 			transaction.commit();		
 		}
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		
+		if(item.getItemId() == android.R.id.home) {
+			finish();
+		}
+		
+		return super.onOptionsItemSelected(item);
 	}
 }

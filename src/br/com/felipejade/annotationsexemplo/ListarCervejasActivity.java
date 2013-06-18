@@ -78,8 +78,11 @@ public class ListarCervejasActivity extends SherlockListActivity {
 				JSONObject jObjCerva = jArray.getJSONObject(i);
 				Cerveja cerva = new Cerveja();
 				
+				cerva.setId(jObjCerva.getInt("id"));
 				cerva.setNome(jObjCerva.getString("name"));
 				cerva.setTeorAlcoolico(jObjCerva.getDouble("abv"));
+				cerva.setDescricao(jObjCerva.getString("description"));
+				cerva.setCervejaria(jObjCerva.getJSONObject("brewery").getString("name"));
 				
 				cervejas.add(cerva);
 			}

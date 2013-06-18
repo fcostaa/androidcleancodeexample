@@ -1,0 +1,31 @@
+{
+	"page":1,
+	"pages":2,
+	"total":73,
+	"beers":[
+		{
+			"id":1,
+			"name":"(512) ALT",
+			"description":"A German-style amber ale that is fermented cooler than typical ales and cold conditioned like a lager. ALT means \"old\" in German and refers to a beer style made using ale yeast after many German brewers had switched to newly discovered lager yeast. This ale has a very smooth, yet pronounced, hop bitterness with a malty backbone and a characteristic German yeast character. Made with 98% organic two-row and Munich malts and US noble hops.",
+			"abv":6.0,
+			"created_at":"2010-12-07T02:53:38Z",
+			"updated_at":"2010-12-07T02:53:38Z",
+			"brewery":{
+				"id":1,
+				"name":"(512) Brewing Company"
+			}
+		},
+		{
+			"id":2,
+			"name":"(512) Bruin",
+			"description":"At once cuddly and ferocious, it combines a smooth, rich maltiness and mahogany color with a solid hop backbone and stealthy 7.6% alcohol. Made with organic two-row and Munich malts, plus chocolate and crystal malts, domestic hops, and a touch of molasses, this brew has notes of raisins, dark sugars, and cocoa, and pairs perfectly with food and the crisp fall air.",
+			"abv":7.6,
+			"created_at":"2010-12-07T02:53:38Z",
+			"updated_at":"2010-12-07T02:53:38Z",
+			"brewery":{
+				"id":1,
+				"name":"(512) Brewing Company"
+			}
+		},
+		{
+			"id":3,"name":"(512) ONE","description":"This first anniversary release is a Belgian-style strong ale that is amber in color, with a light to medium body. Subtle malt sweetness is balanced with noticeable hop flavor, light raisin and mildly spicy, cake-like flavors, and is finished with local wildflower honey aromas. Made with 80% organic malted barley, Belgian specialty grains, Forbidden Fruit yeast, domestic hops and Round Rock local wildflower honey, this beer is deceptively high in alcohol.","abv":8.0,"created_at":"2010-12-07T02:53:38Z","updated_at":"2010-12-07T02:53:38Z","brewery":{"id":1,"name":"(512) Brewing Company"}},{"id":4,"name":"(512) Pecan Porter","description":"Nearly black in color, it is made with organic US two-row and crystal malts along with Baird's chocolate and black malts. Its full body and malty sweetness are balanced with subtle pecan aroma and flavor from locally grown pecans.","abv":6.8,"created_at":"2010-12-07T02:53:38Z","updated_at":"2010-12-07T02:53:38Z","brewery":{"id":1,"name":"(512) Brewing Company"}},{"id":5,"name":"(512) TWO","description":"This second anniversary release is a Double IPA heavily hopped with over 4 lbs/bbl of Simcoe, Magnum, Nugget and Ahtanum. This is a big, malty ale with delicate hop and rich malt aroma, complex hop flavor and sustained smooth hop bitterness. Hops are added from beginning to end during the brewing process and, like most (512) ales, this one is made using over 80% USDA certified organic ingredients.","abv":9.0,"created_at":"2010-12-07T02:53:38Z","updated_at":"2010-12-07T02:53:38Z","brewery":{"id":1,"name":"(512) Brewing Company"}},{"id":6,"name":"(512) Whiskey Barrel Aged Double Pecan Porter","description":"A robust porter accented by locally grown roasted pecans and subtly enhanced by aging in recently emptied oak whiskey barrels. For the first ever bottling, only one 200L barrel was bottled. Notes of chocolate, coffee and pecan marry with the subtle flavors of vanilla and whiskey to make this a wonderful winter warmer worth sharing and savoring.","abv":8.2,"created_at":"2010-12-07T02:53:38Z","updated_at":"2010-12-07T02:53:38Z","brewery":{"id":1,"name":"(512) Brewing Company"}},{"id":7,"name":"Back in Black","description":"Brewed like an American IPA but with the addition of rich, dark malts, this beer has all the flavor and hop character you expect with a smooth, mellow finish.","abv":6.8,"created_at":"2010-12-07T02:53:38Z","updated_at":"2010-12-07T02:53:38Z","brewery":{"id":2,"name":"21st Amendment Brewing"}},{"id":8,"name":"Brew Free! or Die","description":"This aromatic golden IPA starts with a sucker punch of six different hops to the nose, quickly balanced by a solid malt backbone.","abv":7.0,"created_at":"2010-12-07T02:53:38Z","updated_at":"2010-12-07T02:53:38Z","brewery":{"id":2,"name":"21st Amendment Brewing"}},{"id":9,"name":"Firesid

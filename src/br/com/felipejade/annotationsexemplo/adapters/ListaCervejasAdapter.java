@@ -49,11 +49,12 @@ public class ListaCervejasAdapter extends BaseAdapter {
 			LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			rowView = inflater.inflate(R.layout.lista_cervejas_celula, parent, false);
 			
+			holder = new ViewHolder(rowView);
+			
 		} else {
-			rowView = (View) convertView.getTag();
+			holder = (ViewHolder) convertView.getTag();
+			rowView = convertView;
 		}
-		
-		holder = new ViewHolder(rowView);
 		
 		holder.nome.setText(cerva.getNome());
 		holder.teor.setText("" + cerva.getTeorAlcoolico());

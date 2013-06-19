@@ -13,7 +13,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,48 +21,91 @@ import br.com.felipejade.annotationsexemplo.adapters.ListaCervejasAdapter;
 import br.com.felipejade.annotationsexemplo.models.Cerveja;
 
 import com.actionbarsherlock.app.SherlockListActivity;
+import com.googlecode.androidannotations.annotations.AfterViews;
+import com.googlecode.androidannotations.annotations.Background;
+import com.googlecode.androidannotations.annotations.EActivity;
+import com.googlecode.androidannotations.annotations.UiThread;
+import com.googlecode.androidannotations.annotations.ViewById;
 
+@EActivity(R.layout.lista_cervejas)
 public class ListarCervejasActivity extends SherlockListActivity {
 	
 	private static final String TAG = ListarCervejasActivity.class.getSimpleName();
 	
 	private ArrayList<Cerveja> cervejas;
-	private ListView listView;
+	
+	@ViewById(android.R.id.list)
+	ListView listView;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
 		setTheme(R.style.Theme_Sherlock);
 		super.onCreate(savedInstanceState);
 		
-		setContentView(R.layout.lista_cervejas);
-		
-		listView = (ListView) findViewById(android.R.id.list);
-		
 		getSupportActionBar().setTitle("Listar Cervejas");
-		
-		baixarCervejas();
 	}
 	
-	private void baixarCervejas() {
+	@AfterViews
+	@Background
+	protected void baixarCervejas() {
+		Log.i(TAG, "baixar cervejas: " + Thread.currentThread().getId());
 		
-		BaixadorDeCervejas baixadorDeCervejas = new BaixadorDeCervejas();
-		baixadorDeCervejas.execute();
-	}
-	
-	private void listarCervejas(ArrayList<Cerveja> cervejas) {
+		String json = null;
 		
-		this.cervejas = cervejas;
-		
-		if(cervejas.size() > 0) {
-			ListaCervejasAdapter adapter = new ListaCervejasAdapter(this, cervejas);
-			listView.setAdapter(adapter);
-		} else {
-			Log.w(TAG, "O array de cervejas veio vazio :(");
+		HttpURLConnection urlConnection = null;
+		try {
+			URL url = new URL("http://api.openbeerdatabase.com/v1/beers.json");
+			urlConnection = (HttpURLConnection) url.openConnection();
+			
+			json = readStream(urlConnection.getInputStream());
+			
+		} catch(IOException e) {
+			e.printStackTrace();
+			Log.e(TAG, "Erro ao baixar lista de cervejas");
+		} finally {
+			
+			if(urlConnection != null)
+				urlConnection.disconnect();
 		}
 		
+		parsearJSON(json);
 	}
 	
+	
+	private String readStream(InputStream in) {
+		Log.i(TAG, "threadID em readStream: " + Thread.currentThread().getId());
+		
+		BufferedReader reader = null;
+		StringBuffer strBuffer = new StringBuffer();
+		
+		try {
+			reader = new BufferedReader(new InputStreamReader(in));
+			String line = "";
+			
+			while ((line = reader.readLine()) != null) {
+				strBuffer.append(line);
+			}
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+			return null;
+			
+		} finally {
+			if (reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return strBuffer.toString();
+	}
+
 	private void parsearJSON(String json) {
+		Log.i(TAG, "threadID em parsearJSON: " + Thread.currentThread().getId());
 		
 		JSONArray jArray;
 		ArrayList<Cerveja> cervejas = new ArrayList<Cerveja>();
@@ -96,6 +138,22 @@ public class ListarCervejasActivity extends SherlockListActivity {
 		
 		listarCervejas(cervejas);
 	}
+
+	@UiThread
+	protected void listarCervejas(ArrayList<Cerveja> cervejas) {
+		
+		Log.i(TAG, "threadID em listarCervejas: " + Thread.currentThread().getId());
+		
+		this.cervejas = cervejas;
+		
+		if(cervejas.size() > 0) {
+			ListaCervejasAdapter adapter = new ListaCervejasAdapter(this, cervejas);
+			listView.setAdapter(adapter);
+		} else {
+			Log.w(TAG, "O array de cervejas veio vazio :(");
+		}
+		
+	}
 	
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
@@ -105,68 +163,4 @@ public class ListarCervejasActivity extends SherlockListActivity {
 		intent.putExtra(CervejaActivity.CERVEJA, cervejas.get(position));
 		startActivity(intent);
 	}
-	
-	
-	private class BaixadorDeCervejas extends AsyncTask<Void, Void, Object> {
-
-		private String JSONCervejas; 
-		
-		@Override
-		protected Object doInBackground(Void... params) {
-			
-			HttpURLConnection urlConnection = null;
-			try {
-				URL url = new URL("http://api.openbeerdatabase.com/v1/beers.json");
-				urlConnection = (HttpURLConnection) url.openConnection();
-//				InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-				
-				readStream(urlConnection.getInputStream());
-				
-			} catch(IOException e) {
-				e.printStackTrace();
-				Log.e(TAG, "Erro ao baixar lista de cervejas");
-			} finally {
-				
-				if(urlConnection != null)
-					urlConnection.disconnect();
-			}
-			   
-			return null;
-		}
-	
-		@Override
-		protected void onPostExecute(Object result) {
-			super.onPostExecute(result);
-			
-			parsearJSON(JSONCervejas);
-		}
-		
-		private void readStream(InputStream in) {
-
-			BufferedReader reader = null;
-			StringBuffer strBuffer = new StringBuffer();
-			
-			try {
-				reader = new BufferedReader(new InputStreamReader(in));
-				String line = "";
-				
-				while ((line = reader.readLine()) != null) {
-					strBuffer.append(line);
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			} finally {
-				if (reader != null) {
-					try {
-						reader.close();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-				Log.i("JADE", "Setando o valor no JSON do Async");
-				JSONCervejas = strBuffer.toString();
-			}
-		}
-	}
-	
 }

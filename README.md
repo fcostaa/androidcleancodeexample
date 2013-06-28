@@ -18,6 +18,11 @@ http://martinfowler.com/bliki/InversionOfControl.html
 http://martinfowler.com/articles/injection.html
 </p>
 
+<h2>Outros Exemplos:</h2>
+<p>
+http://blogs.burnsidedigital.com/2012/10/android-annotations-continued/
+</p>
+
 <h2>Outros links interessantes:</h2>
 <h3>BD</h3>
 <p>
